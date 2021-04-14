@@ -23,6 +23,7 @@ def get_script_arguments():
     parser = ArgumentParser()
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--eval_only', action='store_true')
+    parser.add_argument('--resume_from', default='outputs')
     return parser.parse_args()
 
 
@@ -77,9 +78,9 @@ def main():
     model_args.save_steps = 50_000
     model_args.train_batch_size = 16
 
-    if Path('outputs').exists():
+    if Path(args.resume_from).exists():
         print('We found a previous checkpoint...')
-        name = 'outputs'
+        name = args.resume_from
     else:
         print('We will train from the Facebook pretrained model...')
         name = 'facebook/bart-base'
