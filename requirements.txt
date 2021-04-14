@@ -2,3 +2,4 @@ torch
 torchvision
 transformers
 simpletransformers
+tabulate

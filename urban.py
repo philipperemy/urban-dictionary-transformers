@@ -7,6 +7,7 @@ import sys
 import pandas as pd
 from simpletransformers.config.model_args import Seq2SeqArgs
 from simpletransformers.seq2seq import Seq2SeqModel
+from tabulate import tabulate
 
 logging.basicConfig(level=logging.INFO)
 transformers_logger = logging.getLogger('transformers')
@@ -72,72 +73,26 @@ def main():
     # noinspection PyArgumentEqualDefault
     model = Seq2SeqModel(
         encoder_decoder_type='bart',
-        encoder_decoder_name='facebook/bart-base',
+        encoder_decoder_name='outputs',
         args=model_args,
         use_cuda=True,
     )
 
-    model.train_model(train_df, eval_data=eval_df)
+    # model.train_model(train_df, eval_data=eval_df)
 
     # # Evaluate the model
     results = model.eval_model(eval_df)
+    print(results)
 
-    random_num = 350
-    actual_title = eval_df.iloc[random_num]['target_text']
-    actual_abstract = [eval_df.iloc[random_num]['input_text']]
-    predicted_title = model.predict(actual_abstract)
+    target_text = list(eval_df['target_text'])
+    input_text = list(eval_df['input_text'])
+    predicted_text = model.predict(list(eval_df['input_text']))
 
-    print(f'Actual Word: {actual_title}')
-    print(f'Predicted Word: {predicted_title}')
-    print(f'Actual Definition: {actual_abstract}')
-
-    # Use the model for prediction
-    print(
-        model.predict(
-            [
-                "Tyson is a Cyclops, a son of Poseidon, and Percy Jackson’s half brother. He is the current general of the Cyclopes army."
-            ]
-        )
-    )
-
-    # model_args = T5Args()
-    # model_args.max_seq_length = 96
-    # model_args.train_batch_size = 20
-    # model_args.eval_batch_size = 20
-    # model_args.num_train_epochs = 1
-    # model_args.evaluate_during_training = True
-    # model_args.evaluate_during_training_steps = 30000
-    # model_args.use_multiprocessing = False
-    # model_args.fp16 = False
-    # model_args.save_steps = -1
-    # model_args.save_eval_checkpoints = False
-    # model_args.no_cache = True
-    # model_args.reprocess_input_data = True
-    # model_args.overwrite_output_dir = True
-    # model_args.preprocess_inputs = False
-    # model_args.num_return_sequences = 1
-    # model_args.use_multiprocessing_for_evaluation = True
-    # model_args.process_count = 2
-
-    # Create T5 Model
-    # model = T5Model('mt5', 't5-small', args=model_args)
-
-    # Train T5 Model on new task
-    # model.train_model(train_df, eval_data=eval_df)
-    #
-    # # Evaluate T5 Model on new task
-    # results = model.eval_model(eval_df.head(10))
-    #
-    # print(results)
-    #
-    # random_num = 350
-    # actual_title = eval_df.iloc[random_num]['target_text']
-    # actual_abstract = ['summarize: ' + eval_df.iloc[random_num]['input_text']]
-    # predicted_title = model.predict(actual_abstract)
-    #
-    # print(f'Actual Title: {actual_title}')
-    # print(f'Predicted Title: {predicted_title}')
-    # print(f'Actual Abstract: {actual_abstract}')
+    print(tabulate({
+        'target_text': target_text,
+        'input_text': [a[0:80] + '...' for a in input_text],
+        'predicted_text': predicted_text
+    }, headers="keys"))
 
 
 if __name__ == '__main__':
