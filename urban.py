@@ -2,8 +2,8 @@
 
 import json
 import logging
-import sys
 from argparse import ArgumentParser
+from pathlib import Path
 
 import pandas as pd
 from simpletransformers.config.model_args import Seq2SeqArgs
@@ -77,11 +77,17 @@ def main():
     model_args.save_steps = 50_000
     model_args.train_batch_size = 16
 
+    if Path('outputs').exists():
+        print('We found a previous checkpoint...')
+        name = 'outputs'
+    else:
+        print('We will train from the Facebook pretrained model...')
+        name = 'facebook/bart-base'
     # Initialize model
     # noinspection PyArgumentEqualDefault
     model = Seq2SeqModel(
         encoder_decoder_type='bart',
-        encoder_decoder_name='outputs',
+        encoder_decoder_name=name,
         args=model_args,
         use_cuda=True,
     )
@@ -101,7 +107,7 @@ def main():
         'target_text': target_text,
         'input_text': [a[0:80] + '...' for a in input_text],
         'predicted_text': predicted_text
-    }, headers="keys"))
+    }, headers='keys'))
 
 
 if __name__ == '__main__':
