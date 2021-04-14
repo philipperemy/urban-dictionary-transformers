@@ -3,6 +3,7 @@
 import json
 import logging
 import sys
+from argparse import ArgumentParser
 
 import pandas as pd
 from simpletransformers.config.model_args import Seq2SeqArgs
@@ -18,6 +19,13 @@ pd.set_option('display.max_colwidth', None)
 DATA_FILE = 'words.json'
 
 
+def get_script_arguments():
+    parser = ArgumentParser()
+    parser.add_argument('--debug', action='store_true')
+    parser.add_argument('--eval_only', action='store_true')
+    return parser.parse_args()
+
+
 def get_metadata():
     with open(DATA_FILE, 'r') as f:
         for line in f:
@@ -25,13 +33,13 @@ def get_metadata():
 
 
 def main():
-    debug = len(sys.argv) > 1
+    args = get_script_arguments()
     words = []
     definitions = []
     metadata = get_metadata()
     count = 0
     for i, d in enumerate(metadata):
-        if debug and i > 10_000:
+        if args.debug and i > 10_000:
             break
         d_dict = json.loads(d)
         definition = d_dict['definition']
@@ -53,11 +61,11 @@ def main():
     print('TRAIN', train_df.shape, 'EVAL', eval_df.shape)
 
     model_args = Seq2SeqArgs()
-    if debug:
+    if args.debug:
         model_args.overwrite_output_dir = True
         model_args.num_train_epochs = 1
     else:
-        model_args.num_train_epochs = 1
+        model_args.num_train_epochs = 10
     model_args.evaluate_generated_text = True
     model_args.use_multiprocessing = False
     model_args.use_multiprocessing_for_evaluation = False
@@ -78,7 +86,8 @@ def main():
         use_cuda=True,
     )
 
-    # model.train_model(train_df, eval_data=eval_df)
+    if not args.eval_only:
+        model.train_model(train_df, eval_data=eval_df)
 
     # # Evaluate the model
     results = model.eval_model(eval_df)
