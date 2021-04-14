@@ -1,6 +1,14 @@
 ## Urban Dictionary Transformers
 Transformers applied to Urban Dictionary for fun.
 
+### Goal
+
+From the description we try to guess the word.
+
+- Input: **One who has a mania for music.**
+- Target: **melomaniac**
+
+![image](https://user-images.githubusercontent.com/4516927/114693303-6c04ce00-9d54-11eb-8ce8-28499512605b.png)
 
 ### Download the data
 
