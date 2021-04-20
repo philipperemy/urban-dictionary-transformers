@@ -8,6 +8,7 @@ from pathlib import Path
 import pandas as pd
 from simpletransformers.config.model_args import Seq2SeqArgs
 from simpletransformers.seq2seq import Seq2SeqModel
+# from tabulate import tabulate
 from tabulate import tabulate
 
 logging.basicConfig(level=logging.INFO)
@@ -51,13 +52,13 @@ def main():
 
     data = pd.DataFrame({'word': words, 'definition': definitions})
     print(data.head())
-
     data = data[['word', 'definition']]
     data.columns = ['target_text', 'input_text']
     data['prefix'] = 'summarize'  # TODO: useful?
+    data.drop_duplicates(inplace=True)
 
     # splitting the data into training and test dataset
-    eval_df = data.sample(frac=0.05, random_state=101)
+    eval_df = data.sample(frac=0.05, random_state=42)
     train_df = data.drop(eval_df.index)
     print('TRAIN', train_df.shape, 'EVAL', eval_df.shape)
 
@@ -104,11 +105,26 @@ def main():
     input_text = list(eval_df['input_text'])
     predicted_text = model.predict(list(eval_df['input_text']))
 
-    print(tabulate({
+    output_2 = []
+    for t, i, p in zip(target_text, input_text, predicted_text):
+        output_2.append({'target': t, 'input': i, 'predicted': p})
+
+    output = {
         'target_text': target_text,
-        'input_text': [a[0:80] + '...' for a in input_text],
+        'input_text': input_text,
         'predicted_text': predicted_text
-    }, headers='keys'))
+    }
+
+    with open('eval.json', 'w') as w:
+        json.dump(obj=output, fp=w, ensure_ascii=False, indent=2)
+    with open('eval2.json', 'w') as w:
+        json.dump(obj=output_2, fp=w, ensure_ascii=False, indent=2)
+    if args.debug:
+        print(tabulate({
+            'target_text': target_text,
+            'input_text': [a[0:80] + '...' for a in input_text],
+            'predicted_text': predicted_text
+        }, headers='keys'))
 
 
 if __name__ == '__main__':
