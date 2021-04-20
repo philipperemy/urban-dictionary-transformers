@@ -58,7 +58,7 @@ def main():
     data.drop_duplicates(inplace=True)
 
     # splitting the data into training and test dataset
-    eval_df = data.sample(frac=0.05, random_state=42)
+    eval_df = data.sample(frac=0.05, random_state=101)
     train_df = data.drop(eval_df.index)
     print('TRAIN', train_df.shape, 'EVAL', eval_df.shape)
 
