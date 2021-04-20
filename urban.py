@@ -109,15 +109,7 @@ def main():
     for t, i, p in zip(target_text, input_text, predicted_text):
         output_2.append({'target': t, 'input': i, 'predicted': p})
 
-    output = {
-        'target_text': target_text,
-        'input_text': input_text,
-        'predicted_text': predicted_text
-    }
-
     with open('eval.json', 'w') as w:
-        json.dump(obj=output, fp=w, ensure_ascii=False, indent=2)
-    with open('eval2.json', 'w') as w:
         json.dump(obj=output_2, fp=w, ensure_ascii=False, indent=2)
     if args.debug:
         print(tabulate({
