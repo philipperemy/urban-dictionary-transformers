@@ -48,7 +48,3 @@ md5sum words.json # 5aca6e9bb2c8b9eb7fc5ebc9f947ec33  words.json
 pip install -r requirements.txt
 python urban.py
 ```
-
-### Status
-
-Currently training!
