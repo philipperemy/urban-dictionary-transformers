@@ -45,6 +45,8 @@ md5sum words.json # 5aca6e9bb2c8b9eb7fc5ebc9f947ec33  words.json
 ### Run the code
 
 ```bash
+# Download the ZIP https://drive.google.com/drive/folders/1dI3o4yTBWHv5s15LxowCY3FDtFyGWkgO.
+unzip urban-checkpoints-20210421.zip
 pip install -r requirements.txt
-python urban.py
+export CUDA_VISIBLE_DEVICES=1; python urban.py --resume_from urban-checkpoints-20210421 --eval_only
 ```
