@@ -10,6 +10,24 @@ From the description we try to guess the word.
 
 ![image](https://user-images.githubusercontent.com/4516927/114693303-6c04ce00-9d54-11eb-8ce8-28499512605b.png)
 
+### Some Results
+
+Isn't that good?
+
+```json
+{
+    "target": "Oh, my back!",
+    "input": "Used when something unpleasant or distasteful is about to happen.",
+    "predicted": "Shit is goin down"
+},
+{
+    "target": "ho",
+    "input": "A bitch.",
+    "predicted": "Kanye West"
+},
+```
+
+
 ### Download the data
 
 ```bash
