@@ -104,4 +104,4 @@ model.predict(['Singer of Nirvana', 'A jerk', 'The thing I do first in the morni
 # ['Kurt Cobain', 'dickwad', 'piss', 'double dip', 'mount dew']
 ```
 
-Judge the results by yourself.
+Judge the results by yourself but I am sure you will find it funny.
