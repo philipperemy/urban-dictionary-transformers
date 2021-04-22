@@ -69,7 +69,19 @@ Isn't that good?
 
 ### How to?
 
-#### Download the data
+#### Download the model checkpoints
+
+```bash
+# Download the ZIP https://drive.google.com/drive/folders/1dI3o4yTBWHv5s15LxowCY3FDtFyGWkgO.
+unzip urban-checkpoints-20210421.zip
+```
+
+#### Install the dependencies
+```bash
+pip install -r requirements.txt
+```
+
+#### Download the data (only for training or full evaluation)
 
 ```bash
 wget https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/8010727/UT_raw_plus_lowercase.7z
@@ -77,18 +89,15 @@ wget https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/8010727/UT_raw_plus_lo
 md5sum words.json # 5aca6e9bb2c8b9eb7fc5ebc9f947ec33  words.json
 ```
 
-#### Run the code
+#### Full evaluation
 
-```bash
-# Download the ZIP https://drive.google.com/drive/folders/1dI3o4yTBWHv5s15LxowCY3FDtFyGWkgO.
-unzip urban-checkpoints-20210421.zip
-pip install -r requirements.txt
+```
 export CUDA_VISIBLE_DEVICES=1; python urban.py --resume_from urban-checkpoints-20210421 --eval_only
 ```
 
-### Query the model
+#### Query the model with your own text
 
-After the call to `Seq2SeqModel` you can query the model like this:
+After the call to `Seq2SeqModel` you can query the model like this (just edit the file):
 
 ```python
 model.predict(['Singer of Nirvana', 'A jerk', 'The thing I do first in the morning.', 'Duck two girls at the same time', 'Highest mountain in the world'])
