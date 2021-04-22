@@ -85,3 +85,12 @@ unzip urban-checkpoints-20210421.zip
 pip install -r requirements.txt
 export CUDA_VISIBLE_DEVICES=1; python urban.py --resume_from urban-checkpoints-20210421 --eval_only
 ```
+
+### Query the model
+
+After the call to `Seq2SeqModel` you can query the model like this:
+
+```python
+model.predict(['Singer of Nirvana', 'A jerk', 'The thing I do first in the morning.'])
+# ['Kurt Cobain', 'dickwad', 'piss']
+```
