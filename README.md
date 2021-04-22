@@ -91,6 +91,8 @@ export CUDA_VISIBLE_DEVICES=1; python urban.py --resume_from urban-checkpoints-2
 After the call to `Seq2SeqModel` you can query the model like this:
 
 ```python
-model.predict(['Singer of Nirvana', 'A jerk', 'The thing I do first in the morning.'])
-# ['Kurt Cobain', 'dickwad', 'piss']
+model.predict(['Singer of Nirvana', 'A jerk', 'The thing I do first in the morning.', 'Duck two girls at the same time'])
+# ['Kurt Cobain', 'dickwad', 'piss', 'double dip']
 ```
+
+Judge the results by yourself.
