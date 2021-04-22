@@ -1,5 +1,5 @@
 ## Urban Dictionary Transformers
-Transformers applied to Urban Dictionary for fun.
+Transformers applied to Urban Dictionary for fun. :peach: :eggplant:
 
 
  *Model name* | *Dataset* | *Num samples (train)* | *Num samples (test)* | *Cross Entropy (test)* | *Num Epochs* | Download model | Results (test)
@@ -91,8 +91,8 @@ export CUDA_VISIBLE_DEVICES=1; python urban.py --resume_from urban-checkpoints-2
 After the call to `Seq2SeqModel` you can query the model like this:
 
 ```python
-model.predict(['Singer of Nirvana', 'A jerk', 'The thing I do first in the morning.', 'Duck two girls at the same time'])
-# ['Kurt Cobain', 'dickwad', 'piss', 'double dip']
+model.predict(['Singer of Nirvana', 'A jerk', 'The thing I do first in the morning.', 'Duck two girls at the same time', 'Highest mountain in the world'])
+# ['Kurt Cobain', 'dickwad', 'piss', 'double dip', 'mount dew']
 ```
 
 Judge the results by yourself.
