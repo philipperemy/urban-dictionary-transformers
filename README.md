@@ -34,6 +34,31 @@ Isn't that good?
     "input": "A bitch.",
     "predicted": "Kanye West"
 },
+{
+  "target": "tequila suicide",
+  "input": "An alternative to the [tequila slammer]. Snort the salt, down the shot, squeeze lime in the eye.\r\n\r\n*WARNING* May cause nasal bleeding, bloodshot eyes and being totally [muntered].",
+  "predicted": "tequila sniper"
+},
+{
+  "target": "A.F.I.D.",
+  "input": "asian female immigrant driver",
+  "predicted": "a.f.i.d."
+},
+{
+  "target": "ecuador",
+  "input": "The best country in the world.  It is home to a superior race of men who is beginning world domination in Rochester, Minnesota and in Rogers, (the whole) Arkansas.",
+  "predicted": "America"
+},
+{
+  "target": "rich",
+  "input": "Someone who has a lot of money",
+  "predicted": "rich"
+},
+{
+  "target": "high-altitude fuck",
+  "input": "1. An instance of sexual intercourse performed in a mountainous region that is usually accompanied by an intense over-bearing shame inflicted on the participants by the conservative views of the society in which they live.  It is also usually directly preceded by stream fishing.  ",
+  "predicted": "mountain fuck"
+},
 ```
 
 
