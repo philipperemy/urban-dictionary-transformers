@@ -16,7 +16,7 @@ From the description we try to guess the word.
 - Target: **melomaniac**
 
 <hr>
-![image](https://user-images.githubusercontent.com/4516927/114693303-6c04ce00-9d54-11eb-8ce8-28499512605b.png)
+<img src="https://user-images.githubusercontent.com/4516927/114693303-6c04ce00-9d54-11eb-8ce8-28499512605b.png"></img>
 <hr>
 
 ### Some Results
