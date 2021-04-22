@@ -4,7 +4,7 @@ Transformers applied to Urban Dictionary for fun.
 
  *Model name* | *Dataset* | *Num samples (train)* | *Num samples (test)* | *Cross Entropy (test)* | *Num Epochs* | Download model | Results (test)
  | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- 
-Facebook BART Base          | Urban Dictionary | 1,190,865 | 62,677 | 1.5180 | 10 |  [Click](https://drive.google.com/drive/folders/1dI3o4yTBWHv5s15LxowCY3FDtFyGWkgO?usp=sharing) |  [Click](https://drive.google.com/drive/folders/1dI3o4yTBWHv5s15LxowCY3FDtFyGWkgO?usp=sharing) |
+Facebook BART Base          | Urban Dictionary | 1,190,865 | 62,677 | 1.5180 | 10 |  [Click (zip)](https://drive.google.com/drive/folders/1dI3o4yTBWHv5s15LxowCY3FDtFyGWkgO?usp=sharing) |  [Click (json)](https://drive.google.com/drive/folders/1dI3o4yTBWHv5s15LxowCY3FDtFyGWkgO?usp=sharing) |
 
 The checkpoints are compatible with [simpletransformers](https://github.com/ThilinaRajapakse/simpletransformers).
 
